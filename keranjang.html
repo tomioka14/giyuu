@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keranjang - GIYU STORE</title>
+  
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: url('file-9H2WjjxAxnKnuSHn5mnnkw') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+    animation: fadeIn 1s ease-in;
+  }
+  @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+  .card {
+    background: rgba(0,0,0,0.6);
+    border-radius: 16px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    padding: 12px;
+    border: 1px solid #444;
+    text-align: center;
+  }
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #00d4ff;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    margin: 5px;
+  }
+</style>
+<style>
+
+body {
+  background: url('file-9H2WjjxAxnKnuSHn5mnnkw') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+    body { background: #0e0e0e; color: white; font-family: 'Poppins', sans-serif; padding: 20px; }
+    h2 { color: #00d4ff; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 10px; border-bottom: 1px solid #333; }
+    button { padding: 10px 20px; background: #00d4ff; border: none; border-radius: 6px; margin-top: 20px; cursor: pointer; }
+  </style>
+<link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap' rel='stylesheet'>
+</head>
+<body>
+
+<nav style="text-align:center; margin: 10px auto;">
+  <a href="index.html"><button>🏠 Home</button></a>
+  <a href="harga_instagram.html"><button>📸 Instagram</button></a>
+  <a href="harga_tiktok.html"><button>🎵 TikTok</button></a>
+  <a href="harga_telegram.html"><button>💬 Telegram</button></a>
+  <a href="harga_facebook.html"><button>📘 Facebook</button></a>
+  <a href="keranjang.html"><button>🛒 Keranjang</button></a>
+  <a href="checkout.html"><button>📦 Checkout</button></a>
+  <a href="dashboard.html"><button>📊 Dashboard</button></a>
+</nav>
+
+
+<header style="text-align:center; margin-bottom: 20px;">
+  <img src="file-JxxtPuBzS5qs7SHoXi1Nyd" alt="Logo GIYU STORE" style="width:80px; display:block; margin:10px auto;">
+  <h1 style="color:#00d4ff; font-family:'Segoe UI', sans-serif;">GIYU STORE</h1>
+</header>
+
+<div class='card'>
+  <h2>🛒 Keranjang Belanja</h2>
+  <table id="cartTable">
+    <thead>
+      <tr><th>Platform</th><th>Layanan</th><th>Paket</th><th>Aksi</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <button onclick="checkout()">Lanjut ke Pembayaran</button>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const tbody = document.querySelector('tbody');
+
+    function renderCart() {
+      tbody.innerHTML = '';
+      cart.forEach((item, i) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${item.platform}</td><td>${item.service}</td><td>${item.package}</td>
+          <td><button onclick="hapus(${i})">Hapus</button></td>`;
+        tbody.appendChild(row);
+      });
+    }
+
+    function hapus(i) {
+      cart.splice(i, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function checkout() {
+      window.location.href = 'checkout.html';
+    }
+
+    renderCart();
+  </script>
+</div>
+</body>
+</html>
